@@ -45,6 +45,8 @@ function initMap() {
         var retorno = JSON.stringify(response);
         ret = document.getElementById("retorno").innerText = retorno;
         stat = document.getElementById("status").innerText = status;
+        var new_end = response.originAddresses[0];
+        alert(new_end);
     }
     //******* Fim de Distance Matrix */
     var directionsService = new google.maps.DirectionsService();
@@ -56,7 +58,7 @@ function initMap() {
 function calculateAndDisplayRoute(directionsService, directionsRenderer) {
     directionsService
         .route({
-            origin: "Av. João Paulo ||, 500 - Urbanova, São José dos Campos - SP, 12244-597, Brasil",
+            origin: new_end,
             destination: "R. Euclídes Miragaia, 25 - Centro, São José dos Campos - SP, 12245-820, Brasil",
             travelMode: google.maps.TravelMode.DRIVING,
         })
