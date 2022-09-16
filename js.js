@@ -46,7 +46,6 @@ function initMap() {
         ret = document.getElementById("retorno").innerText = retorno;
         stat = document.getElementById("status").innerText = status;
         var new_end = response.originAddresses[0];
-        alert(new_end);
     }
     //******* Fim de Distance Matrix */
     var directionsService = new google.maps.DirectionsService();
