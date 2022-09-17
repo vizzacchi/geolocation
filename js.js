@@ -1,5 +1,6 @@
 var lat;
 var lon;
+var new_end;
 function geolocation() {
     if (!navigator.geolocation)
         return null;
@@ -40,21 +41,21 @@ function initMap() {
             destinations: [destinationA],
             travelMode: 'DRIVING',
         }, callback);
-
+    
     function callback(response, status) {
         var retorno = JSON.stringify(response);
         ret = document.getElementById("retorno").innerText = retorno;
         stat = document.getElementById("status").innerText = status;
-        var new_end = response.originAddresses[0];
+        new_end = response.originAddresses[0];
+        var directionsService = new google.maps.DirectionsService();
+        var directionsRenderer = new google.maps.DirectionsRenderer({ suppressMarkers: true });
+        directionsRenderer.setMap(map);
+        calculateAndDisplayRoute(directionsService, directionsRenderer,new_end);
     }
     //******* Fim de Distance Matrix */
-    var directionsService = new google.maps.DirectionsService();
-    var directionsRenderer = new google.maps.DirectionsRenderer({suppressMarkers:true});
-    
-    directionsRenderer.setMap(map);
-    calculateAndDisplayRoute(directionsService, directionsRenderer);
 }
-function calculateAndDisplayRoute(directionsService, directionsRenderer) {
+function calculateAndDisplayRoute(directionsService, directionsRenderer,new_end) {
+    alert(new_end);
     directionsService
         .route({
             origin: new_end,
