@@ -55,7 +55,6 @@ function initMap() {
     //******* Fim de Distance Matrix */
 }
 function calculateAndDisplayRoute(directionsService, directionsRenderer,new_end) {
-    alert(new_end);
     directionsService
         .route({
             origin: new_end,
