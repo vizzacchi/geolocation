@@ -4,7 +4,7 @@ var new_end;
 function geolocation() {
     if (!navigator.geolocation)
         return null;
-    navigator.geolocation.getCurrentPosition((pos) => {
+        navigator.geolocation.getCurrentPosition((pos) => {
         lat = document.getElementById("lat").innerText = pos.coords.latitude;
         lon = document.getElementById("lon").innerText = pos.coords.longitude;
         initMap();
