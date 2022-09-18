@@ -8,14 +8,32 @@
 
 <body>
     <div id="map"></div>
-    <label>Latitude: <span id="lat"></span></label>
-    <label>Longitude: <span id="lon"></span></label>
+    <p>Localização do usuário:
+        <label>Latitude: <span id="lat"></span></label>
+        <label>Longitude: <span id="lon"></span></label>
+    </p>
+    <p>Endereço do Usuário: <span id="userEndereco"></span></p>
+    <p>Endereço do Destino: R. Euclídes Miragaia, 25 - Centro, São José dos Campos - SP, 12245-820, Brasil</p>
+    <p>Distância entre os pontos: <span id="distancia"></span></p>
+    <p>Tempo de viagem (de carro): <span id="tempo"></span></p>
     <div id="status"></div>
     <div id="retorno"></div>
     
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA32PDmcZkbv37_Jb-GU9ZOTu9OW4j1n4o"
         defer></script>
+    <script>
+        async function getContent(){
+            try {
+                const response = await fetch('https://apifiap.herokuapp.com/');
+                const data = await response.text();
+                alert(data);
+            } catch (error) {
+                console.log("Errou");
+            }
+        }
+        getContent();
+    </script>
     <script src="./js.js"></script>
     
 </body>

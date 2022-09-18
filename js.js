@@ -5,8 +5,8 @@ function geolocation() {
     if (!navigator.geolocation)
         return null;
         navigator.geolocation.getCurrentPosition((pos) => {
-        lat = document.getElementById("lat").innerText = pos.coords.latitude;
-        lon = document.getElementById("lon").innerText = pos.coords.longitude;
+        latUser = document.getElementById("lat").innerText = pos.coords.latitude;
+        lonUser = document.getElementById("lon").innerText = pos.coords.longitude;
         initMap();
     })
 }
@@ -14,7 +14,7 @@ const image = "./person.png";
 const pilon = "./pilon.png";
 
 function initMap() {
-    const uluru = { lat: lat, lng: lon };
+    const uluru = { lat: latUser, lng: lonUser };
     map = new google.maps.Map(document.getElementById('map'), {
         center: uluru,
         zoom: 7,
@@ -31,7 +31,7 @@ function initMap() {
     });
 
     //Distance Matrix para calcular a distância e o tempo entre dois pontos
-    var origin1 = new google.maps.LatLng(lat, lon);
+    var origin1 = new google.maps.LatLng(latUser, lonUser);
     var destinationA = new google.maps.LatLng(-23.192075, -45.88987);
 
     var service = new google.maps.DistanceMatrixService();
@@ -45,8 +45,10 @@ function initMap() {
     function callback(response, status) {
         var retorno = JSON.stringify(response);
         ret = document.getElementById("retorno").innerText = retorno;
-        stat = document.getElementById("status").innerText = status;
         new_end = response.originAddresses[0];
+        var endUser = document.getElementById("userEndereco").innerText = new_end;
+        //ealert(response.rows.elements.distance.text);
+        //var tempo = document.getElementById("tempo").innerText = response.rows.elements[0];
         var directionsService = new google.maps.DirectionsService();
         var directionsRenderer = new google.maps.DirectionsRenderer({ suppressMarkers: true });
         directionsRenderer.setMap(map);
